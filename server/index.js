@@ -5,16 +5,25 @@ import cors from "cors"
 import {Server as SocketServer} from "socket.io"
 import http from "http"
 
+//Initialize server
 const app= express()
-const servidor= http.createServer(app)
-const io= new SocketServer(servidor, {})
-
-
-app.use(cors())
-app.use(morgan("dev"))
-io.on("connection", (socket)=>{
-console.log(socket.id);
+const server= http.createServer(app)
+const io= new SocketServer(server, {
+    cors:{
+        origin: "http://localhost:3000"
+    }
 })
 
-app.listen(PORT)
+//middleware
+app.use(cors())
+app.use(morgan("dev"))
+//config socket.io
+io.on("connection", (socket)=>{
+console.log(socket.id);
+    socket.on("send", (body)=>{
+        socket.broadcast.emit("send", {body, from: socket.id.slice(4)})
+    })
+})
+
+server.listen(PORT)
 console.log("PROBANDO");

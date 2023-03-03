@@ -1,13 +1,24 @@
 import io from "socket.io-client"
 import './App.css';
-import {useState} from "react"
+import {useState, useEffect} from "react"
 const socket = io("http://localhost:3001")
+
 
 function App() {
   const [message, setMessage]= useState("")
   const [messages, setMessages]= useState([
     {from: "jorge" , body: "hola mundo"}
   ]) 
+useEffect(()=>{
+  const reciveMessage = (message)=> {
+    setMessages([message, ...messages])
+  }
+  socket.on("send", reciveMessage)
+  return ()=>{
+    socket.off("send", reciveMessage)
+  }
+},[messages])
+
   let handleSubmit = evento =>{
     evento.preventDefault()
     const newMessage= {

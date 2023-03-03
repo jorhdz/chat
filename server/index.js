@@ -21,7 +21,7 @@ app.use(morgan("dev"))
 io.on("connection", (socket)=>{
 console.log(socket.id);
     socket.on("send", (body)=>{
-        socket.broadcast.emit("send", {body, from: socket.id.slice(4)})
+        socket.broadcast.emit("send", {body, from: socket.id.slice(10)})
     })
 })
 

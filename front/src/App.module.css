@@ -1,0 +1,28 @@
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.list{
+    list-style: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.me{
+    background-color: antiquewhite;
+    
+}
+
+.you{
+    background-color: aqua;
+}
+
+.button{
+    border-radius: 10px;
+    background-color: beige;
+    margin-left: 5px;
+}

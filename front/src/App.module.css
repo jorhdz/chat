@@ -13,7 +13,7 @@
 }
 
 .me{
-    background-color: antiquewhite;
+    background-color: rgba(73, 45, 73, 0.479);
     
 }
 
@@ -25,4 +25,20 @@
     border-radius: 10px;
     background-color: beige;
     margin-left: 5px;
+   /* transition: transform 2s ease-in-out 1s;*/
+   animation: moveDown 2s;
+  
+}
+.button:hover{
+    background-color: green;
+   /* transform: scale(1.5);*/
+}
+
+@keyframes moveDown {
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(10px);
+    }
 }
